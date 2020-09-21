@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
-//import {Client} from 'search'
+import {Client} from './dist/index'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import Button from '@material-ui/core/Button'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft' 
@@ -74,10 +74,10 @@ const SwipeableTemporaryDrawer = function(props) {
       className={clsx(classes.list)}
       role="presentation"
     >
+			<Client client={props.client} settingId="b67635cc-cb47-4aaf-b37b-42e470acfef3"/>
     </div>
   );
 	
-			//<Client client={props.client} settingId="b67635cc-cb47-4aaf-b37b-42e470acfef3"/>
 			//<Plugins />
 	const anchor = 'left';
 

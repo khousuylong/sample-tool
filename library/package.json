@@ -25,7 +25,8 @@
     "graphql": "^15.3.0",
     "graphql-tools": "^4.0.6",
     "leaflet": "^1.7.1",
-    "react-leaflet": "^2.7.0"
+    "react-leaflet": "^2.7.0",
+    "react-leaflet-measure": "^2.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -49,7 +50,6 @@
     "webpack": "^4.44.1"
   },
   "dependencies": {
-    "babel-plugin-module-resolver": "^4.0.0",
-    "react-leaflet-measure": "^2.1.1"
+    "babel-plugin-module-resolver": "^4.0.0"
   }
 }

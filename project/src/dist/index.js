@@ -1,13 +1,34 @@
 import React from 'react';
-import { ApolloProvider, useMutation } from '@apollo/client';
+import { ApolloProvider, useMutation, useQuery } from '@apollo/client';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
-import 'pubsub-js';
+import PubSub from 'pubsub-js';
 import gql from 'graphql-tag';
+import { Typography } from '@material-ui/core';
+import { withLeaflet } from 'react-leaflet';
+import MeasureControlDefault from 'react-leaflet-measure';
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
 
 function _taggedTemplateLiteral(strings, raw) {
   if (!raw) {
@@ -174,4 +195,86 @@ var AdminSetting = function AdminSetting(props) {
   }, /*#__PURE__*/React.createElement(Form, null));
 };
 
-export { AdminSetting };
+var Client = function Client(props) {
+  var LoadSetting = function LoadSetting() {
+    var _useQuery = useQuery(PLUGIN_SETTING_QUERY, {
+      variables: {
+        id: props.settingId
+      }
+    }),
+        data = _useQuery.data;
+
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: 10
+      }
+    }, /*#__PURE__*/React.createElement(Typography, {
+      variant: "subtitle2",
+      gutterBottom: true
+    }, "Measure distances and areas"), /*#__PURE__*/React.createElement(Button, {
+      variant: "contained",
+      onClick: function onClick() {
+        return PubSub.publish("start-measure");
+      }
+    }, "Measure"));
+  };
+
+  return /*#__PURE__*/React.createElement(ApolloProvider, {
+    client: props.client
+  }, /*#__PURE__*/React.createElement(LoadSetting, null));
+};
+
+var MeasureControl = withLeaflet(MeasureControlDefault);
+
+var MeasureTool = function MeasureTool(props) {
+  var storeControl = function storeControl(control) {
+    PubSub.subscribe("start-measure", function (msg, data) {
+      control.leafletElement._startMeasure();
+    });
+  };
+
+  var LoadSetting = function LoadSetting() {
+    var _useQuery = useQuery(PLUGIN_SETTING_QUERY, {
+      variables: {
+        id: props.settingId
+      }
+    }),
+        loading = _useQuery.loading,
+        error = _useQuery.error,
+        data = _useQuery.data;
+
+    if (loading) return /*#__PURE__*/React.createElement("div", {
+      style: {
+        height: 200
+      }
+    }, "Loadding...");
+    if (error) console.log('this is error', error);
+
+    if (data) {
+      var setting = data.pluginSetting.setting;
+      var metrix = JSON.parse(setting).metrix;
+      var measureOptions = {
+        position: 'topright',
+        primaryLengthUnit: metrix === "imperial" ? 'feet' : 'meters',
+        secondaryLengthUnit: metrix === "imperial" ? 'miles' : 'kilometers',
+        primaryAreaUnit: metrix === "imperial" ? 'sqfeet' : 'sqmeters',
+        secondaryAreaUnit: metrix === "imperial" ? 'acres' : 'hectars',
+        activeColor: '#db4a29',
+        completedColor: '#9b2d14'
+      };
+      return /*#__PURE__*/React.createElement(MeasureControl, _extends({}, measureOptions, {
+        ref: function ref(control) {
+          return storeControl(control);
+        }
+      }));
+    }
+
+    return null;
+  };
+
+  return /*#__PURE__*/React.createElement(ApolloProvider, {
+    client: props.client
+  }, /*#__PURE__*/React.createElement(LoadSetting, null));
+};
+
+export { AdminSetting, Client, MeasureTool };

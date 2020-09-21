@@ -2,7 +2,6 @@ import React from 'react'
 import { ApolloProvider, useQuery } from '@apollo/client'
 import { Typography } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
-import styles from '../styles.module.css'
 import {PLUGIN_SETTING_QUERY} from '../queries/pluginQuery'
 import PubSub from 'pubsub-js'
 
