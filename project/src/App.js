@@ -10,7 +10,6 @@ import {resolvers} from './schema/resolvers'
 import AppMap from './map'
 import SwipeableTemporaryDrawer from './drawer'
 import SettingDrawer from './settingDrawer'
-//import { Button } from './dist/index';
 import './App.css';
 
 const schema = makeExecutableSchema({
