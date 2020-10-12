@@ -6,7 +6,7 @@ import { ApolloProvider, useQuery } from '@apollo/client'
 import {PLUGIN_SETTING_QUERY} from '../queries/pluginQuery'
 
 const MeasureControl = withLeaflet(MeasureControlDefault);
-const MeasureTool = function(props){
+const LControl = function(props){
   const storeControl = control => {
     PubSub.subscribe("start-measure", function (msg, data) {
       control.leafletElement._startMeasure()
@@ -51,4 +51,4 @@ const MeasureTool = function(props){
     </ApolloProvider>
   )
 }
-export default MeasureTool
+export default LControl

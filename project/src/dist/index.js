@@ -195,7 +195,7 @@ var AdminSetting = function AdminSetting(props) {
   }, /*#__PURE__*/React.createElement(Form, null));
 };
 
-var Client = function Client(props) {
+var ClientView = function ClientView(props) {
   var LoadSetting = function LoadSetting() {
     var _useQuery = useQuery(PLUGIN_SETTING_QUERY, {
       variables: {
@@ -226,7 +226,7 @@ var Client = function Client(props) {
 
 var MeasureControl = withLeaflet(MeasureControlDefault);
 
-var MeasureTool = function MeasureTool(props) {
+var LControl = function LControl(props) {
   var storeControl = function storeControl(control) {
     PubSub.subscribe("start-measure", function (msg, data) {
       control.leafletElement._startMeasure();
@@ -277,4 +277,4 @@ var MeasureTool = function MeasureTool(props) {
   }, /*#__PURE__*/React.createElement(LoadSetting, null));
 };
 
-export { AdminSetting, Client, MeasureTool };
+export { AdminSetting, ClientView, LControl };

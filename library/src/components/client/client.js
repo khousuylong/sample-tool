@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 import {PLUGIN_SETTING_QUERY} from '../queries/pluginQuery'
 import PubSub from 'pubsub-js'
 
-const Client = (props) => {
+const ClientView = (props) => {
 
   const LoadSetting = () => {
     const {data} = useQuery(PLUGIN_SETTING_QUERY, {
@@ -29,4 +29,4 @@ const Client = (props) => {
   )
 }
 
-export default Client
+export default ClientView
