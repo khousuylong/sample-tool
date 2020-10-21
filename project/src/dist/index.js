@@ -1,5 +1,5 @@
 import React from 'react';
-import { ApolloProvider, useMutation, useQuery } from '@apollo/client';
+import { gql, ApolloProvider, useMutation, useQuery } from '@apollo/client';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -7,7 +7,6 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 import PubSub from 'pubsub-js';
-import gql from 'graphql-tag';
 import { Typography } from '@material-ui/core';
 import { withLeaflet } from 'react-leaflet';
 import MeasureControlDefault from 'react-leaflet-measure';
