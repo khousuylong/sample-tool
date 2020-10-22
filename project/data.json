@@ -1,0 +1,20 @@
+{
+  "plugins": [
+    {
+      "id": "869a172a-1026-458d-8c6b-89590d16b5d5",
+      "name": "Measuring",
+      "active": true,
+      "description": "Click on the map to check the distance between two or more points",
+      "icon": "@material-ui/icons/LinearScale",
+      "thumbnail": "",
+      "src": "measuring-tool/src"
+    }
+  ],
+  "pluginSettings": [
+    {
+      "id": "b67635cc-cb47-4aaf-b37b-42e470acfef3",
+      "pluginId": "869a172a-1026-458d-8c6b-89590d16b5d5",
+      "setting": "{\"metrix\":\"imperial\"}"
+    }
+  ]
+}
